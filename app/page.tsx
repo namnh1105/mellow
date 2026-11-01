@@ -1,8 +1,9 @@
 'use client'
 
 import Link from 'next/link'
+import Header from '../components/layout/Header'
 import { useEffect, useState } from 'react'
-import { ArrowRight, Heart, Menu, Search, ShoppingBag, Sparkles, X } from 'lucide-react'
+import { ArrowRight, Heart, Sparkles } from 'lucide-react'
 import buildYourOwnSoapImage from '../assets/buildyourownsoap.png'
 import giftBoxImage from '../assets/giftbox.png'
 import moodSoapImage from '../assets/moodsoap.png'
@@ -42,19 +43,15 @@ const teamMembers = [
 ]
 
 export default function Page() {
-  const [menuOpen, setMenuOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
   const [teamSlide, setTeamSlide] = useState(0)
   const [bannerSlide, setBannerSlide] = useState(0)
   const [email, setEmail] = useState('')
   const [subscribed, setSubscribed] = useState(false)
   const [contactSent, setContactSent] = useState(false)
-  useEffect(() => { const onScroll = () => setIsScrolled(window.scrollY > 24); window.addEventListener('scroll', onScroll, { passive: true }); onScroll(); return () => window.removeEventListener('scroll', onScroll) }, [])
   useEffect(() => { const timer = window.setInterval(() => setTeamSlide((current) => (current + 1) % teamMembers.length), 4500); return () => window.clearInterval(timer) }, [])
   useEffect(() => { const timer = window.setInterval(() => setBannerSlide((current) => (current + 1) % banners.length), 5000); return () => window.clearInterval(timer) }, [])
-  const closeMenu = () => setMenuOpen(false)
   return <main className="mellow-page">
-    <header className={isScrolled ? 'reference-header is-scrolled' : 'reference-header'}><a className="nav-logo" href="#home" aria-label="Mellow home"><img src={logoUrl} alt="Mellow Handmade Soap" /></a><nav className={menuOpen ? 'reference-nav open' : 'reference-nav'}><a href="#home" onClick={closeMenu}>Home</a><a href="#collections" onClick={closeMenu}>Collection</a><a href="#about" onClick={closeMenu}>About Us</a><a href="#contact" onClick={closeMenu}>Contact</a><a href="/products" onClick={closeMenu}>Shop</a></nav><div className="nav-tools"><button aria-label="Search"><Search /></button><button aria-label="Account"><Heart /></button><button aria-label="Shopping bag" onClick={() => window.location.href = '/products'}><ShoppingBag /><b>{0}</b></button><button className="mobile-menu" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? 'Close menu' : 'Open menu'}>{menuOpen ? <X /> : <Menu />}</button></div></header>
+    <Header />
     <section id="home" className="reference-hero" aria-label="MELLOW featured banners"><div className="hero-brand-panel"><p className="script-note">Handmade with love ♡</p><h1><em>How do you want to feel today?</em></h1><p className="hero-lede">Natural handmade soaps for<br />your everyday mood.</p><a className="shop-button" href="/products">Shop now <ArrowRight /></a></div><div className="hero-banner-carousel"><div className="hero-banner-track" aria-live="off">{banners.map((banner, index) => <div className={`hero-banner-slide ${index === bannerSlide ? 'active' : ''}`} key={banner.alt} aria-hidden={index !== bannerSlide}><img className="hero-banner-image" src={banner.image.src} alt={banner.alt} /></div>)}</div><div className="hero-banner-dots" aria-label="Choose a banner">{banners.map((banner, index) => <button key={banner.alt} type="button" className={index === bannerSlide ? 'active' : ''} onClick={() => setBannerSlide(index)} aria-label={`Show banner ${index + 1}`} aria-current={index === bannerSlide ? 'true' : undefined} />)}</div></div></section>
     <section id="moods" className="mood-strip"><div className="section-intro"><p className="section-kicker"><Sparkles /> Find your mood</p><p>Let your skin feel it.</p><a href="#collections">View all <ArrowRight /></a></div><div className="mood-row">{moods.map((mood) => <a className="mood-item" href="#collections" key={mood.title}><span className={`mood-circle ${mood.tone}`}>{mood.icon}</span><em>{mood.title}</em><small>{mood.scent}</small></a>)}</div></section>
     <section id="story" className="story-section"><div className="section-heading"><p className="section-kicker"><Heart /> Our story</p></div><div className="story-split"><div className="story-photo"><img className="story-photo-image" src={storyImage.src} alt="MELLOW’s six mood soaps: Calm, Glow, Focus, Love, Comfort, and Pure" /></div><div className="story-content"><h3 className="story-subtitle"><em>Bestsellers</em></h3><p>Our most-loved scents, crafted with gentle fragrance for a complete moment of calm.</p><a className="under-link" href="#collections">Explore collection <ArrowRight /></a><div className="polaroids"><div className="polaroid one">Good<br />Things<br />Take Time ♡</div><div className="polaroid two">Small<br />moments.<br />Big changes.</div></div></div></div></section>

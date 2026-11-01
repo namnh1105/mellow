@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useMemo, useState } from 'react'
+import Header from '../../components/layout/Header'
 import mood1 from '../../assets/product/moodsoap/mood1.png'
 import mood2 from '../../assets/product/moodsoap/mood2.png'
 import mood3 from '../../assets/product/moodsoap/mood3.png'
@@ -34,7 +35,7 @@ const products: Product[] = [
     name: 'Calm Lavender',
     category: 'mood-soap',
     price: 140000,
-    description: 'Sữa xà phòng thơm nhài dịu nhẹ, giúp thư giãn sau một ngày dài.',
+    description: 'Gentle jasmine scented soap, helping you relax after a long day.',
     image: mood1,
     badge: 'Calm',
   },
@@ -43,7 +44,7 @@ const products: Product[] = [
     name: 'Energy Citrus',
     category: 'mood-soap',
     price: 140000,
-    description: 'Hương cam chanh sảng khoái, khơi dậy năng lượng cho buổi sáng.',
+    description: 'Refreshing citrus scent, awakening energy for the morning.',
     image: mood2,
     badge: 'Energy',
   },
@@ -52,7 +53,7 @@ const products: Product[] = [
     name: 'Focus Mint',
     category: 'mood-soap',
     price: 140000,
-    description: 'Bạc hà & rosemary cho cảm giác tỉnh táo và tập trung.',
+    description: 'Mint & rosemary for a feeling of alertness and focus.',
     image: mood3,
     badge: 'Focus',
   },
@@ -61,7 +62,7 @@ const products: Product[] = [
     name: 'Love Rose',
     category: 'mood-soap',
     price: 140000,
-    description: 'Hương hoa hồng ấm áp, tạo cảm giác yêu thương và dịu mịn.',
+    description: 'Warm rose scent, creating a feeling of love and softness.',
     image: mood4,
     badge: 'Love',
   },
@@ -70,7 +71,7 @@ const products: Product[] = [
     name: 'Comfort Vanilla',
     category: 'mood-soap',
     price: 140000,
-    description: 'Vanilla dịu nhẹ, mang lại cảm giác an toàn và thư thái.',
+    description: 'Gentle vanilla, bringing a sense of safety and relaxation.',
     image: mood5,
     badge: 'Comfort',
   },
@@ -79,7 +80,7 @@ const products: Product[] = [
     name: 'Reset Oat',
     category: 'mood-soap',
     price: 140000,
-    description: 'Hương yến mạch mềm mịn, giúp da được nuôi dưỡng và làm dịu.',
+    description: 'Smooth oat scent, helping the skin be nourished and calmed.',
     image: mood6,
     badge: 'Reset',
   },
@@ -88,7 +89,7 @@ const products: Product[] = [
     name: 'Build Your Own Soap',
     category: 'build-your-own',
     price: 190000,
-    description: 'Tự chọn mùi, màu sắc, hình dạng và lời nhắn để tạo ra một chiếc xà phòng cá nhân hóa.',
+    description: 'Choose scent, color, shape and message to create a personalized soap.',
     image: buildYourOwnSoapImage,
     badge: 'Custom',
   },
@@ -97,14 +98,14 @@ const products: Product[] = [
     name: 'Mood Gift Box',
     category: 'gift-box',
     price: 260000,
-    description: 'Hộp quà dành cho những khoảnh khắc yêu thương, kèm túi rửa và thiệp cá nhân.',
+    description: 'Gift box for moments of love, includes washing bag and personal card.',
     image: giftBoxImage,
     badge: 'Gift',
   },
 ]
 
 const filters: { label: string; value: ProductCategory }[] = [
-  { label: 'Tất cả', value: 'all' },
+  { label: 'All', value: 'all' },
   { label: 'Mood Soap', value: 'mood-soap' },
   { label: 'Build Your Own', value: 'build-your-own' },
   { label: 'Gift Box', value: 'gift-box' },
@@ -165,24 +166,14 @@ export default function ProductsPage() {
 
   return (
     <main className="shop-page-shell">
-      <header className="shop-header">
-        <Link href="/" className="shop-brand" aria-label="Về trang chủ Mellow">
-          <span>MELLOW</span>
-        </Link>
-        <nav className="shop-main-nav" aria-label="Menu điều hướng sản phẩm">
-          <Link href="/">Trang chủ</Link>
-          <Link href="/products">Shop</Link>
-          <Link href="/#collections">Collection</Link>
-          <Link href="/#about">About us</Link>
-        </nav>
-      </header>
+      <Header />
 
       <section className="shop-hero">
         <div>
           <p className="shop-kicker">Mellow Shop</p>
-          <h1>Chọn cảm giác bạn muốn mang theo hôm nay.</h1>
+          <h1>Choose the feeling you want to carry today.</h1>
           <p className="shop-hero-copy">
-            Từ những chiếc xà phòng theo mood đến bộ quà tặng và tùy chọn sáng tạo, mỗi sản phẩm đều được làm thủ công để lan tỏa cảm giác dễ chịu và thư giãn.
+            From mood soaps to gift sets and creative options, each product is handmade to spread a feeling of comfort and relaxation.
           </p>
         </div>
       </section>
@@ -190,7 +181,7 @@ export default function ProductsPage() {
       <section className="shop-layout">
         <div className="product-panel">
           <div className="shop-toolbar">
-            <div className="shop-filter-group" aria-label="Lọc sản phẩm theo loại">
+            <div className="shop-filter-group" aria-label="Filter products by type">
               {filters.map((filter) => (
                 <button
                   key={filter.value}
@@ -202,7 +193,7 @@ export default function ProductsPage() {
                 </button>
               ))}
             </div>
-            <p>{visibleProducts.length} sản phẩm</p>
+            <p>{visibleProducts.length} products</p>
           </div>
 
           <div className="shop-product-grid">
@@ -223,9 +214,9 @@ export default function ProductsPage() {
                   <h2>{product.name}</h2>
                   <p>{product.description}</p>
                   <div className="shop-price-row">
-                    <strong>{product.price.toLocaleString('vi-VN')}₫</strong>
+                    <strong>{product.price.toLocaleString('en-US')}₫</strong>
                     <button type="button" onClick={() => addToCart(product)}>
-                      Thêm vào giỏ
+                      Add to cart
                     </button>
                   </div>
                 </div>
@@ -236,14 +227,14 @@ export default function ProductsPage() {
 
         <aside className="cart-panel">
           <div className="cart-panel-header">
-            <h3>Giỏ hàng</h3>
-            <span>{cart.reduce((sum, item) => sum + item.quantity, 0)} món</span>
+            <h3>Shopping Cart</h3>
+            <span>{cart.reduce((sum, item) => sum + item.quantity, 0)} items</span>
           </div>
 
           {cart.length === 0 ? (
             <div className="empty-cart">
-              <p>Chưa có sản phẩm nào trong giỏ.</p>
-              <span>Hãy chọn một chiếc xà phòng bạn thích nhé.</span>
+              <p>Your cart is empty.</p>
+              <span>Please choose a soap you love.</span>
             </div>
           ) : (
             <div className="cart-list">
@@ -251,14 +242,14 @@ export default function ProductsPage() {
                 <div key={item.id} className="cart-item">
                   <div className="cart-item-copy">
                     <strong>{item.name}</strong>
-                    <span>{item.price.toLocaleString('vi-VN')}₫</span>
+                    <span>{item.price.toLocaleString('en-US')}₫</span>
                   </div>
                   <div className="cart-item-actions">
-                    <button type="button" onClick={() => updateQuantity(item.id, -1)} aria-label={`Giảm ${item.name}`}>
+                    <button type="button" onClick={() => updateQuantity(item.id, -1)} aria-label={`Decrease ${item.name}`}>
                       −
                     </button>
                     <span>{item.quantity}</span>
-                    <button type="button" onClick={() => updateQuantity(item.id, 1)} aria-label={`Tăng ${item.name}`}>
+                    <button type="button" onClick={() => updateQuantity(item.id, 1)} aria-label={`Increase ${item.name}`}>
                       +
                     </button>
                   </div>
@@ -269,59 +260,58 @@ export default function ProductsPage() {
 
           <div className="order-summary">
             <div>
-              <span>Tạm tính</span>
-              <strong>{subtotal.toLocaleString('vi-VN')}₫</strong>
+              <span>Subtotal</span>
+              <strong>{subtotal.toLocaleString('en-US')}₫</strong>
             </div>
             <div>
-              <span>Phí vận chuyển</span>
-              <strong>{shippingFee.toLocaleString('vi-VN')}₫</strong>
+              <span>Shipping Fee</span>
+              <strong>{shippingFee.toLocaleString('en-US')}₫</strong>
             </div>
             <div className="total-row">
-              <span>Tổng cộng</span>
-              <strong>{total.toLocaleString('vi-VN')}₫</strong>
+              <span>Total</span>
+              <strong>{total.toLocaleString('en-US')}₫</strong>
             </div>
           </div>
 
           <form className="checkout-form" onSubmit={handleCheckout}>
             <label>
-              Họ tên
+              Full Name
               <input
                 type="text"
                 value={customer.name}
                 onChange={(event) => setCustomer((current) => ({ ...current, name: event.target.value }))}
-                placeholder="Nguyễn Văn A"
+                placeholder="Enter your full name"
                 required
               />
             </label>
             <label>
-              Số điện thoại
+              Phone Number
               <input
                 type="tel"
                 value={customer.phone}
                 onChange={(event) => setCustomer((current) => ({ ...current, phone: event.target.value }))}
-                placeholder="0987654321"
+                placeholder="Enter your phone number"
                 required
               />
             </label>
             <label>
-              Địa chỉ giao hàng
+              Shipping Address
               <textarea
                 rows={4}
                 value={customer.address}
                 onChange={(event) => setCustomer((current) => ({ ...current, address: event.target.value }))}
-                placeholder="123 Đường ABC, Quận 1, TP.HCM"
+                placeholder="Enter your shipping address"
                 required
               />
             </label>
 
             <button type="submit" className="checkout-button" disabled={cart.length === 0}>
-              Đặt hàng ngay
+              Place Order Now
             </button>
           </form>
-
           {orderPlaced && (
             <div className="order-success" role="status">
-              Đặt hàng thành công! Chúng tôi sẽ liên hệ xác nhận trong thời gian sớm nhất.
+              Order placed successfully! We will contact you to confirm soon.
             </div>
           )}
         </aside>
