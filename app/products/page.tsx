@@ -4,12 +4,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useMemo, useState } from 'react'
 import Header from '../../components/layout/Header'
-import mood1 from '../../assets/product/moodsoap/mood1.png'
-import mood2 from '../../assets/product/moodsoap/mood2.png'
-import mood3 from '../../assets/product/moodsoap/mood3.png'
-import mood4 from '../../assets/product/moodsoap/mood4.png'
-import mood5 from '../../assets/product/moodsoap/mood5.png'
-import mood6 from '../../assets/product/moodsoap/mood6.png'
+import mood1 from '../../assets/product/moodsoap/calm_lavender.png'
+import mood2 from '../../assets/product/moodsoap/glow_citrus.png'
+import mood3 from '../../assets/product/moodsoap/focus_mint-rosemary.png'
+import mood4 from '../../assets/product/moodsoap/love_rose.png'
+import mood5 from '../../assets/product/moodsoap/comfort_vanilla-floral.png'
+import mood6 from '../../assets/product/moodsoap/pure_oat-herbs.png'
 import buildYourOwnSoapImage from '../../assets/buildyourownsoap.png'
 import giftBoxImage from '../../assets/giftbox.png'
 
@@ -34,16 +34,16 @@ const products: Product[] = [
     id: 'calm-lavender',
     name: 'Calm Lavender',
     category: 'mood-soap',
-    price: 140000,
-    description: 'Gentle jasmine scented soap, helping you relax after a long day.',
+    price: 70000,
+    description: 'Gentle lavender scented soap, helping you relax after a long day.',
     image: mood1,
     badge: 'Calm',
   },
   {
     id: 'energy-citrus',
-    name: 'Energy Citrus',
+    name: 'Glow Citrus',
     category: 'mood-soap',
-    price: 140000,
+    price: 70000,
     description: 'Refreshing citrus scent, awakening energy for the morning.',
     image: mood2,
     badge: 'Energy',
@@ -52,7 +52,7 @@ const products: Product[] = [
     id: 'focus-mint',
     name: 'Focus Mint',
     category: 'mood-soap',
-    price: 140000,
+    price: 70000,
     description: 'Mint & rosemary for a feeling of alertness and focus.',
     image: mood3,
     badge: 'Focus',
@@ -61,7 +61,7 @@ const products: Product[] = [
     id: 'love-rose',
     name: 'Love Rose',
     category: 'mood-soap',
-    price: 140000,
+    price: 70000,
     description: 'Warm rose scent, creating a feeling of love and softness.',
     image: mood4,
     badge: 'Love',
@@ -70,17 +70,17 @@ const products: Product[] = [
     id: 'comfort-vanilla',
     name: 'Comfort Vanilla',
     category: 'mood-soap',
-    price: 140000,
-    description: 'Gentle vanilla, bringing a sense of safety and relaxation.',
+    price: 70000,
+    description: 'Gentle vanilla and floral, bringing a sense of safety and relaxation.',
     image: mood5,
     badge: 'Comfort',
   },
   {
     id: 'reset-oat',
-    name: 'Reset Oat',
+    name: 'Pure Oat',
     category: 'mood-soap',
-    price: 140000,
-    description: 'Smooth oat scent, helping the skin be nourished and calmed.',
+    price: 70000,
+    description: 'Smooth oat and herbs, helping the skin be nourished and calmed.',
     image: mood6,
     badge: 'Reset',
   },
@@ -88,7 +88,7 @@ const products: Product[] = [
     id: 'build-your-own',
     name: 'Build Your Own Soap',
     category: 'build-your-own',
-    price: 190000,
+    price: 100000,
     description: 'Choose scent, color, shape and message to create a personalized soap.',
     image: buildYourOwnSoapImage,
     badge: 'Custom',
@@ -97,7 +97,7 @@ const products: Product[] = [
     id: 'mellow-gift-box',
     name: 'Mood Gift Box',
     category: 'gift-box',
-    price: 260000,
+    price: 150000,
     description: 'Gift box for moments of love, includes washing bag and personal card.',
     image: giftBoxImage,
     badge: 'Gift',
