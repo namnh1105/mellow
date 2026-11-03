@@ -53,7 +53,39 @@ export default function Page() {
   useEffect(() => { const timer = window.setInterval(() => setBannerSlide((current) => (current + 1) % banners.length), 5000); return () => window.clearInterval(timer) }, [])
   return <main className="mellow-page">
     <Header />
-    <section id="home" className="reference-hero" aria-label="MELLOW featured banners"><div className="hero-brand-panel"><p className="script-note">Handmade with love ♡</p><h1><em>How do you want to feel today?</em></h1><p className="hero-lede">Natural handmade soaps for<br />your everyday mood.</p><a className="shop-button" href="/products">Shop now <ArrowRight /></a></div><div className="hero-banner-carousel"><div className="hero-banner-track" aria-live="off">{banners.map((banner, index) => <div className={`hero-banner-slide ${index === bannerSlide ? 'active' : ''}`} key={banner.alt} aria-hidden={index !== bannerSlide}><Image className="hero-banner-image" src={banner.image} alt={banner.alt} fill style={{ objectFit: 'cover' }} priority={index === 0} /></div>)}</div><div className="hero-banner-dots" aria-label="Choose a banner">{banners.map((banner, index) => <button key={banner.alt} type="button" className={index === bannerSlide ? 'active' : ''} onClick={() => setBannerSlide(index)} aria-label={`Show banner ${index + 1}`} aria-current={index === bannerSlide ? 'true' : undefined} />)}</div></div></section>
+    <section id="home" className="reference-hero" aria-label="MELLOW featured banners">
+      <div className="hero-banner-carousel">
+        <div className="hero-banner-track" aria-live="off">
+          {banners.map((banner, index) => (
+            <div
+              className={`hero-banner-slide ${index === bannerSlide ? 'active' : ''}`}
+              key={banner.alt}
+              aria-hidden={index !== bannerSlide}
+            >
+              <Image
+                className="hero-banner-image"
+                src={banner.image}
+                alt={banner.alt}
+                sizes="100vw"
+                priority={index === 0}
+              />
+            </div>
+          ))}
+        </div>
+        <div className="hero-banner-dots" aria-label="Choose a banner">
+          {banners.map((banner, index) => (
+            <button
+              key={banner.alt}
+              type="button"
+              className={index === bannerSlide ? 'active' : ''}
+              onClick={() => setBannerSlide(index)}
+              aria-label={`Show banner ${index + 1}`}
+              aria-current={index === bannerSlide ? 'true' : undefined}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
     <section id="moods" className="mood-strip"><div className="section-intro"><p className="section-kicker"><Sparkles /> Find your mood</p><p>Let your skin feel it.</p><a href="#collections">View all <ArrowRight /></a></div><div className="mood-row">{moods.map((mood) => <a className="mood-item" href="#collections" key={mood.title}><span className={`mood-circle ${mood.tone}`}>{mood.icon}</span><em>{mood.title}</em><small>{mood.scent}</small></a>)}</div></section>
     <section id="story" className="story-section"><div className="section-heading"><p className="section-kicker"><Heart /> Our story</p></div><div className="story-split"><div className="story-photo"><img className="story-photo-image" src={storyImage.src} alt="MELLOW’s six mood soaps: Calm, Glow, Focus, Love, Comfort, and Pure" /></div><div className="story-content"><h3 className="story-subtitle"><em>Bestsellers</em></h3><p>Our most-loved scents, crafted with gentle fragrance for a complete moment of calm.</p><a className="under-link" href="#collections">Explore collection <ArrowRight /></a><div className="polaroids"><div className="polaroid one">Good<br />Things<br />Take Time ♡</div><div className="polaroid two">Small<br />moments.<br />Big changes.</div></div></div></div></section>
     <section className="promise-row"><div><span>♧</span><p>100% natural<br />ingredients</p></div><div><span>♡</span><p>Safe for<br />sensitive skin</p></div><div><span>♧</span><p>Thoughtfully handmade,<br />bar by bar</p></div><div><span>◎</span><p>Kind to<br />the planet</p></div><strong>Small soap,<br /><em>Big care</em></strong></section>
